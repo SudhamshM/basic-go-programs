@@ -1,3 +1,7 @@
+/*
+	Author: Sudhamsh Mondrati
+*/
+
 package main
 
 import (
@@ -9,7 +13,7 @@ func main() {
 	fmt.Println("Welcome to first program.")
 	// creating numbers, strings & booleans
 	defaultNumber16 := 16
-	var number18 int = 127
+	var number18 int = 18
 
 	var stringOne string = "String one."
 	stringTwo := "String two."
@@ -32,6 +36,9 @@ func main() {
 	// replacing strings
 	otherString := string_replace(stringOne, stringTwo)
 	fmt.Printf("After replacing Strings: %v\n", otherString)
+
+	fmt.Printf("Converting pi to int: %d\n", int(floatPi))
+	fmt.Printf("Converting 18 to float32: %0.2f\n", float32(number18))
 
 }
 
