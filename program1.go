@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
@@ -28,6 +29,10 @@ func main() {
 	fmt.Printf("Sum of Numbers: %v\n", sum(defaultNumber16, number18))
 	fmt.Printf("Sum of Floats: %v\n", sum_float(floatNumber, floatPi))
 
+	// replacing strings
+	otherString := string_replace(stringOne, stringTwo)
+	fmt.Printf("After replacing Strings: %v\n", otherString)
+
 }
 
 func sum(num1 int, num2 int) int {
@@ -37,4 +42,9 @@ func sum(num1 int, num2 int) int {
 
 func sum_float(num1 float32, num2 float64) float64 {
 	return float64(num1) + num2
+}
+
+func string_replace(str1 string, str2 string) string {
+	newString := strings.Replace(str1, str1, str2, -1)
+	return newString
 }
