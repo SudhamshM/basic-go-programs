@@ -8,10 +8,9 @@ func main() {
 	fmt.Println("Welcome to first program.")
 	// creating numbers, strings & booleans
 	defaultNumber16 := 16
-	var number18 int8 = 127
+	var number18 int = 127
 
-	var stringOne string
-	stringOne = "String one."
+	var stringOne string = "String one."
 	stringTwo := "String two."
 
 	var floatNumber float32 = 391042.49502
@@ -23,6 +22,14 @@ func main() {
 	// printing above info
 	fmt.Printf("Numbers: %v, %v\n", defaultNumber16, number18)
 	fmt.Printf("Strings: %v, %v\n", stringOne, stringTwo)
-	fmt.Printf("Strings: %f, %f\n", floatNumber, floatPi)
-	fmt.Printf("Booleans: %t, %t", defaultBoolean, trueBoolean)
+	fmt.Printf("Floats: %f, %f\n", floatNumber, floatPi)
+	fmt.Printf("Booleans: %t, %t\n", defaultBoolean, trueBoolean)
+
+	fmt.Printf("Sum of Numbers: %v\n", sum(defaultNumber16, number18))
+
+}
+
+func sum(num1 int, num2 int) int {
+	var result int = num1 + num2
+	return result
 }
