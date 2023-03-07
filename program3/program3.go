@@ -9,6 +9,8 @@ import (
 	"strconv"
 )
 
+var num1, num2 int
+
 func dividebyZeroError() error {
 	return errors.New("cannot divide by zero")
 }
@@ -95,8 +97,6 @@ func main() {
 	//
 	var condTrue int
 	condTrue = 1
-
-	num1, num2 := 0, 0
 
 	for condTrue == 1 {
 
