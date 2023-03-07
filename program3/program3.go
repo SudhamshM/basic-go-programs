@@ -6,10 +6,10 @@ package main
 import (
 	"errors"
 	"fmt"
-	"strconv"
 )
 
-var num1, num2 int
+var num1 int
+var num2 int
 
 func dividebyZeroError() error {
 	return errors.New("cannot divide by zero")
@@ -19,7 +19,7 @@ func notInRangeError() error {
 }
 
 func notIntegerOrFloat() error {
-	return errors.New("the value should be a integer or float.")
+	return errors.New("the value should be a integer and if you entered zero do the math yourself")
 }
 
 func addValues(a, b int) int {
@@ -54,53 +54,57 @@ func moduloValue(a, b int) int {
 	return a % b
 }
 
-func getInputValues() (int, int, error) {
-
+func getInputValues() (int, int) {
+	num1 = 0
+	num2 = 0
 	fmt.Println("Please enter the first value:")
-	var userInput1, userInput2 string
-	fmt.Scan(&userInput1)
-	if _, err := strconv.ParseInt(userInput1, 10, 64); err == nil {
-		// it is an integer
-	} else {
-		// Try to parse input as a float
-		if _, err := strconv.ParseFloat(userInput1, 64); err == nil {
-			// it is a float
+	fmt.Scan(&num1)
+
+	var calculationChoiceInRange int
+	calculationChoiceInRange = 1
+	for calculationChoiceInRange == 1 {
+		_, errorValue := isInt(num1)
+		if errorValue != nil {
+			fmt.Println(errorValue)
+			fmt.Println("Please enter the first value:")
+			fmt.Scan(&num1)
 		} else {
-			return -1, -1, notIntegerOrFloat()
+			calculationChoiceInRange = calculationChoiceInRange + 2
 		}
 	}
 
 	fmt.Println("Please enter the second value:")
-	fmt.Scan(&userInput2)
-
-	if _, err := strconv.ParseInt(userInput2, 10, 64); err == nil {
-		// it is an integer
-	} else {
-		// Try to parse input as a float
-		if _, err := strconv.ParseFloat(userInput2, 64); err == nil {
-			// it is a float
+	fmt.Scan(&num2)
+	var calculationChoiceInRange2 int
+	calculationChoiceInRange2 = 1
+	for calculationChoiceInRange2 == 1 {
+		_, errorValue := isInt(num2)
+		if errorValue != nil {
+			fmt.Println(errorValue)
+			fmt.Println("Please enter the second value:")
+			fmt.Scan(&num2)
 		} else {
-			return -1, -1, notIntegerOrFloat()
+			calculationChoiceInRange2 = calculationChoiceInRange2 + 2
 		}
 	}
 
-	return num1, num2, nil
+	return num1, num2
 }
 
-/*
-func divide(a, b int) int {
-	return a / b
+func isInt(a int) (int, error) {
+	if a == 0 {
+		return -1, notIntegerOrFloat()
+	} else {
+		return a, nil
+	}
 }
-*/
 
 func main() {
 	//
 	var condTrue int
 	condTrue = 1
-
 	for condTrue == 1 {
 
-		// Asking the user to input the size of the array (group)
 		fmt.Println("Enter a number what calculation you want to have done:")
 		fmt.Println("1. Add")
 		fmt.Println("2. Subtract")
@@ -108,12 +112,10 @@ func main() {
 		fmt.Println("4. Divide")
 		fmt.Println("5. Modulo")
 		fmt.Println("6. QUIT")
-		// Saving the user input to the memory address of groupSize
 
 		var calculationChoice int
 		fmt.Scan(&calculationChoice)
-		//_, errorValue := reScanInput(calculationChoice)
-		//fmt.Println("Error: ", errorValue)
+
 		var calculationChoiceInRange int
 		calculationChoiceInRange = 1
 		for calculationChoiceInRange == 1 {
@@ -128,62 +130,29 @@ func main() {
 			}
 		}
 
-		//fmt.Println(num1)
-		//fmt.Println(num2)
-		//fmt.Println(calculationChoice)
-		fmt.Println()
 		fmt.Println()
 
 		switch calculationChoice {
-
 		case 1:
-			var errorVal error
-			num1, num2, errorVal = getInputValues()
-			if errorVal == nil {
-				fmt.Println("The values are added: ", addValues(num1, num2))
-			} else {
-				fmt.Println(errorVal)
-			}
+			num1, num2 = getInputValues()
+			fmt.Println("The values are added: ", addValues(num1, num2))
 		case 2:
-			var errorVal error
-			num1, num2, errorVal = getInputValues()
-			if errorVal == nil {
-				fmt.Println("The values are subtracted: ", substractValues(num1, num2))
-			} else {
-				fmt.Println(errorVal)
-			}
+			num1, num2 = getInputValues()
+			fmt.Println("The values are subtracted: ", substractValues(num1, num2))
 		case 3:
-			var errorVal error
-			num1, num2, errorVal = getInputValues()
-
-			if errorVal == nil {
-				fmt.Println("The values are muitlplied: ", muiltplyValues(num1, num2))
-			} else {
-				fmt.Println(errorVal)
-			}
+			num1, num2 = getInputValues()
+			fmt.Println("The values are muitlplied: ", muiltplyValues(num1, num2))
 		case 4:
-			var errorVal error
-			num1, num2, errorVal = getInputValues()
-			if errorVal == nil {
-				resultFromMethod, errorValue := divideValue(num1, num2)
-				if errorValue == nil {
-					fmt.Println("The values are divided: ", resultFromMethod)
-				} else {
-					fmt.Println(errorValue)
-				}
+			num1, num2 = getInputValues()
+			resultFromMethod, errorValue := divideValue(num1, num2)
+			if errorValue == nil {
+				fmt.Println("The values are divided: ", resultFromMethod)
 			} else {
-				fmt.Println(errorVal)
+				fmt.Println(errorValue)
 			}
-
 		case 5:
-			var errorVal error
-			num1, num2, errorVal = getInputValues()
-
-			if errorVal == nil {
-				fmt.Println("The values are modulo: ", moduloValue(num1, num2))
-			} else {
-				fmt.Println(errorVal)
-			}
+			num1, num2 = getInputValues()
+			fmt.Println("The values are modulo: ", moduloValue(num1, num2))
 		case 6:
 			condTrue = condTrue + 1
 		}
