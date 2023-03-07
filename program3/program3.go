@@ -1,5 +1,5 @@
 /*
-Authors: Brijesh Patel, Sudhamsh Mondrati, Ajay Shankar
+Authors: Brijesh Patel, Sudhamsh Mondrati, Ajay Shankar, Aiden James
 */
 package main
 
@@ -34,11 +34,11 @@ func muiltplyValues(a, b int) int {
 	return a * b
 }
 
-func divideValue(a, b int) (int, error) {
+func divideValue(a, b int) (float32, error) {
 	if b == 0 {
 		return -1, dividebyZeroError()
 	} else {
-		return a / b, nil
+		return float32(a) / float32(b), nil
 	}
 }
 
