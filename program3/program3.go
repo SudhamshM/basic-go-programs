@@ -6,12 +6,13 @@ package main
 import (
 	"errors"
 	"fmt"
+	"strconv"
 )
 
 var num1 int
 var num2 int
 
-func dividebyZeroError() error {
+func divideByZeroError() error {
 	return errors.New("cannot divide by zero")
 }
 func notInRangeError() error {
@@ -19,7 +20,7 @@ func notInRangeError() error {
 }
 
 func notIntegerOrFloat() error {
-	return errors.New("the value should be a integer and if you entered zero do the math yourself")
+	return errors.New("please only enter an integer")
 }
 
 func addValues(a, b int) int {
@@ -35,8 +36,8 @@ func muiltplyValues(a, b int) int {
 }
 
 func divideValue(a, b int) (float32, error) {
-	if b == 0 {
-		return -1, dividebyZeroError()
+	if float32(b) == 0 {
+		return -1, divideByZeroError()
 	} else {
 		return float32(a) / float32(b), nil
 	}
@@ -54,49 +55,31 @@ func moduloValue(a, b int) int {
 	return a % b
 }
 
+func ParseIntFromInput() int {
+  var input string
+  for true {
+    fmt.Scan(&input)
+		if n1, err := strconv.ParseInt(input, 10, 64); err == nil {
+			return int(n1)
+		} else {
+			fmt.Println("please input an integer value")
+		}
+	}
+  return 0
+}
+
 func getInputValues() (int, int) {
 	num1 = 0
 	num2 = 0
-	fmt.Println("Please enter the first value:")
-	fmt.Scan(&num1)
 
-	var calculationChoiceInRange int
-	calculationChoiceInRange = 1
-	for calculationChoiceInRange == 1 {
-		_, errorValue := isInt(num1)
-		if errorValue != nil {
-			fmt.Println(errorValue)
-			fmt.Println("Please enter the first value:")
-			fmt.Scan(&num1)
-		} else {
-			calculationChoiceInRange = calculationChoiceInRange + 2
-		}
-	}
-
-	fmt.Println("Please enter the second value:")
-	fmt.Scan(&num2)
-	var calculationChoiceInRange2 int
-	calculationChoiceInRange2 = 1
-	for calculationChoiceInRange2 == 1 {
-		_, errorValue := isInt(num2)
-		if errorValue != nil {
-			fmt.Println(errorValue)
-			fmt.Println("Please enter the second value:")
-			fmt.Scan(&num2)
-		} else {
-			calculationChoiceInRange2 = calculationChoiceInRange2 + 2
-		}
-	}
-
+  
+  fmt.Println("Please enter the first value:")
+  
+	num1 = ParseIntFromInput()
+  fmt.Println("Please enter the second value:")
+	num2 = ParseIntFromInput()
+	
 	return num1, num2
-}
-
-func isInt(a int) (int, error) {
-	if a == 0 {
-		return -1, notIntegerOrFloat()
-	} else {
-		return a, nil
-	}
 }
 
 func main() {
@@ -114,21 +97,8 @@ func main() {
 		fmt.Println("6. QUIT")
 
 		var calculationChoice int
-		fmt.Scan(&calculationChoice)
+		calculationChoice = ParseIntFromInput()
 
-		var calculationChoiceInRange int
-		calculationChoiceInRange = 1
-		for calculationChoiceInRange == 1 {
-			_, errorValue := reScanInput(calculationChoice)
-			if errorValue != nil {
-				fmt.Println(errorValue)
-				fmt.Scan(&calculationChoice)
-
-			} else {
-				calculationChoiceInRange = calculationChoiceInRange + 2
-				break
-			}
-		}
 
 		fmt.Println()
 
@@ -155,6 +125,8 @@ func main() {
 			fmt.Println("The values are modulo: ", moduloValue(num1, num2))
 		case 6:
 			condTrue = condTrue + 1
+    default:
+      fmt.Println("Please enter an integer from 1 to 6")
 		}
 	}
 
