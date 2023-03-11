@@ -30,16 +30,29 @@ func main() {
 	fmt.Printf("Floats: %f, %f\n", floatNumber, floatPi)
 	fmt.Printf("Booleans: %t, %t\n", defaultBoolean, trueBoolean)
 
-	fmt.Printf("Sum of Numbers: %v\n", sum(defaultNumber16, number18))
+	//taking the sum
+	fmt.Printf("\nSum of Numbers: %v\n", sum(defaultNumber16, number18))
 	fmt.Printf("Sum of Floats: %v\n", sum_float(floatNumber, floatPi))
+
+	//taking the difference
+	fmt.Printf("\nDifference of Numbers: %v\n", difference(defaultNumber16, number18))
+	fmt.Printf("Difference of Floats: %v\n", diff_float(floatNumber, floatPi))
 
 	// replacing strings
 	otherString := string_replace(stringOne, stringTwo)
-	fmt.Printf("After replacing Strings: %v\n", otherString)
+	fmt.Printf("\nAfter replacing Strings: %v\n", otherString)
 
-	fmt.Printf("Converting pi to int: %d\n", int(floatPi))
+	//adding strings
+	var combinedString string = string_conc(stringOne, stringTwo)
+	fmt.Printf("After combining Strings: %v\n", combinedString)
+
+	//converting using cast
+	fmt.Printf("\nConverting pi to int: %d\n", int(floatPi))
 	fmt.Printf("Converting 18 to float32: %0.2f\n", float32(number18))
 
+	//using boolean functions
+	fmt.Printf("\nInverting given boolean value (false to true): %t\n", inverseBool(defaultBoolean))
+	fmt.Printf("Applying bitwise Or to the given boolean values (false || true): %t\n", bitwiseOr(defaultBoolean, trueBoolean))
 }
 
 func sum(num1 int, num2 int) int {
