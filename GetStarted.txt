@@ -1,0 +1,4 @@
+To install Go, you must visit the following website: https://go.dev/doc/install
+Then install the software that corresponds with your operating system
+After installation, use your preferred text editor (I recommend VScode)
+Then install any needed .go files, and run them using the following command: go run **filename.go**
