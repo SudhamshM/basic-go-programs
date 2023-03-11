@@ -1,5 +1,5 @@
 /*
-	Author: Sudhamsh Mondrati
+	Author: Sudhamsh Mondrati, Melvin Priyemskiy
 */
 
 package main
@@ -47,11 +47,35 @@ func sum(num1 int, num2 int) int {
 	return result
 }
 
+func difference(num1 int, num2 int) int {
+	var result int = num1 - num2
+	return result
+}
+
 func sum_float(num1 float32, num2 float64) float64 {
 	return float64(num1) + num2
+}
+
+func diff_float(num1 float32, num2 float64) float64 {
+	return float64(num1) - num2
 }
 
 func string_replace(str1 string, str2 string) string {
 	newString := strings.Replace(str1, str1, str2, -1)
 	return newString
+}
+
+func string_conc(str1 string, str2 string) string {
+	return str1 + str2
+}
+
+func inverseBool(userInput bool) bool {
+	return !userInput
+}
+
+func bitwiseOr(input1 bool, input2 bool) bool {
+	if input1 || input2 {
+		return true
+	}
+	return false
 }
