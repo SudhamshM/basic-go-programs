@@ -41,7 +41,7 @@ func main() {
 	fmt.Println("Would you like to delete a group member? (Y/N)")
 	fmt.Scan(&ans)
 
-	if ans == "Y" {
+	if ans == "Y" || ans == "y" {
 		var name string
 		fmt.Println("What is the name of the group member you want to delete?")
 		fmt.Scan(&name)
